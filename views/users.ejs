@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9fafb; /* very light gray */
+            color: #1f2937; /* dark gray */
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #111827;
+            margin-bottom: 20px;
+        }
+
+        ol {
+            list-style-position: inside;
+            padding: 0;
+            color: #374151;
+            margin-bottom: 30px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        a button {
+            background-color: #6b7280; /* medium gray */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        a button:hover {
+            background-color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <h1>Users</h1>
+    <ol>
+        <% users.forEach(user => { %>
+            <li><%= user.userName %></li>
+        <% }) %>
+    </ol>
+    <a href="/create"><button>Create User</button></a>
+    <a href="/login"><button>Login</button></a>
+</body>
+</html>

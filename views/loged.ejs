@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged In</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6; /* light gray */
+            color: #1f2937; /* dark gray for text */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #111827;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #4b5563;
+        }
+
+        a button, form button {
+            background-color: #6b7280; /* medium gray */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        a button:hover, form button:hover {
+            background-color: #4b5563; /* darker on hover */
+        }
+
+        form {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, <%= userName %>!</h1>
+    <p>You have successfully logged in.</p>
+    
+    <a href="/users"><button>View All Users</button></a>
+    <a href="/login"><button>Logout</button></a>
+    
+    <form action="/loged/delete/<%= userId %>" method="POST">
+        <button type="submit">Delete Account</button>
+    </form>
+</body>
+</html>
