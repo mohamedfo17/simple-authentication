@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logged In</title>
+    <title>Profile</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -41,8 +41,34 @@
             background-color: #4b5563; /* darker on hover */
         }
 
+        form button.danger {
+            background-color: #ef4444; /* red */
+        }
+
+        form button.danger:hover {
+            background-color: #b91c1c; /* darker red */
+        }
+
         form {
             margin-top: 10px;
+        }
+
+        .flash-message {
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .success {
+            background-color: #d1fae5;
+            color: #065f46;
         }
     </style>
 </head>
@@ -50,11 +76,23 @@
     <h1>Welcome, <%= userName %>!</h1>
     <p>You have successfully logged in.</p>
     
-    <a href="/users"><button>View All Users</button></a>
-    <a href="/login"><button>Logout</button></a>
+    <% if (success && success.length > 0) { %>
+        <div class="flash-message success">
+            <%= success %>
+        </div>
+    <% } %>
     
-    <form action="/loged/delete/<%= userId %>" method="POST">
-        <button type="submit">Delete Account</button>
+    <% if (error && error.length > 0) { %>
+        <div class="flash-message error">
+            <%= error %>
+        </div>
+    <% } %>
+    
+    <a href="/users"><button>View All Users</button></a>
+    <a href="/logout"><button>Logout</button></a>
+    
+    <form action="/delete-account" method="POST">
+        <button type="submit" class="danger">Delete Account</button>
     </form>
 </body>
 </html>

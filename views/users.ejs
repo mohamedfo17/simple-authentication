@@ -43,16 +43,68 @@
         a button:hover {
             background-color: #4b5563;
         }
+
+        .flash-message {
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        
+        .user-status {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <h1>Users</h1>
+    
+    <% if (success && success.length > 0) { %>
+        <div class="flash-message success">
+            <%= success %>
+        </div>
+    <% } %>
+    
+    <% if (error && error.length > 0) { %>
+        <div class="flash-message error">
+            <%= error %>
+        </div>
+    <% } %>
+    
+    <% if (isAuthenticated) { %>
+        <div class="user-status">
+            You are currently logged in as <%= currentUser.userName %>
+            <div><a href="/profile"><button>Go to Profile</button></a></div>
+        </div>
+    <% } %>
+    
     <ol>
         <% users.forEach(user => { %>
             <li><%= user.userName %></li>
         <% }) %>
     </ol>
+    
     <a href="/create"><button>Create User</button></a>
-    <a href="/login"><button>Login</button></a>
+    
+    <% if (!isAuthenticated) { %>
+        <a href="/login"><button>Login</button></a>
+    <% } else { %>
+        <a href="/logout"><button>Logout</button></a>
+    <% } %>
 </body>
 </html>
